@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombie Survival RPG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="ui">
+            <div id="health-bar">
+                <div id="health-fill"></div>
+            </div>
+            <div id="ammo-counter">Ammo: 10</div>
+            <div id="day-counter">Day: 1</div>
+        </div>
+        <div id="start-screen">
+            <h1>Zombie Survival RPG</h1>
+            <button id="start-button">Start Game</button>
+        </div>
+        <div id="game-over-screen" class="hidden">
+            <h1>Game Over</h1>
+            <p>You survived <span id="days-survived">0</span> days!</p>
+            <button id="restart-button">Try Again</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
