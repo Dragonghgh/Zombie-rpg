@@ -4,28 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zombie Survival RPG</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="game-container">
         <canvas id="game-canvas"></canvas>
-        <div id="ui">
-            <div id="health-bar">
-                <div id="health-fill"></div>
+        
+        <!-- Game UI -->
+        <div id="game-ui">
+            <div class="stat-bar">
+                <div class="stat-icon">❤️</div>
+                <div class="stat-container">
+                    <div id="health-bar" class="stat-fill"></div>
+                </div>
+                <span id="health-text">100%</span>
             </div>
-            <div id="ammo-counter">Ammo: 10</div>
-            <div id="day-counter">Day: 1</div>
+            
+            <div class="stat-bar">
+                <div class="stat-icon">🔫</div>
+                <div class="stat-container">
+                    <div id="ammo-bar" class="stat-fill"></div>
+                </div>
+                <span id="ammo-text">10/10</span>
+            </div>
+            
+            <div id="day-night-indicator">
+                <span id="day-text">Day 1</span>
+                <div id="time-indicator"></div>
+            </div>
+            
+            <div id="score-display">Score: 0</div>
+            
+            <div id="weapon-display">
+                <img id="weapon-icon" src="assets/weapon.png" alt="Weapon">
+                <span id="weapon-name">Pistol</span>
+            </div>
+            
+            <div id="inventory-button">🎒</div>
         </div>
-        <div id="start-screen">
-            <h1>Zombie Survival RPG</h1>
-            <button id="start-button">Start Game</button>
+        
+        <!-- Inventory Modal -->
+        <div id="inventory-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Inventory</h2>
+                <div id="inventory-grid"></div>
+                <div id="crafting-section">
+                    <h3>Crafting</h3>
+                    <div id="crafting-options"></div>
+                </div>
+                <button id="close-inventory">Close</button>
+            </div>
         </div>
-        <div id="game-over-screen" class="hidden">
-            <h1>Game Over</h1>
-            <p>You survived <span id="days-survived">0</span> days!</p>
-            <button id="restart-button">Try Again</button>
+        
+        <!-- Game Menu -->
+        <div id="game-menu" class="modal">
+            <div class="modal-content">
+                <h1>Zombie Survival RPG</h1>
+                <div class="menu-options">
+                    <button id="start-button">New Game</button>
+                    <button id="load-button" disabled>Load Game</button>
+                    <button id="controls-button">Controls</button>
+                    <button id="about-button">About</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Controls Modal -->
+        <div id="controls-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Controls</h2>
+                <ul>
+                    <li><strong>WASD/Arrows:</strong> Move character</li>
+                    <li><strong>Mouse:</strong> Aim and shoot</li>
+                    <li><strong>Space:</strong> Reload (during day)</li>
+                    <li><strong>I:</strong> Open inventory</li>
+                    <li><strong>E:</strong> Interact with objects</li>
+                    <li><strong>Esc:</strong> Pause game</li>
+                </ul>
+                <button id="close-controls">Back</button>
+            </div>
+        </div>
+        
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="modal hidden">
+            <div class="modal-content">
+                <h1>Game Over</h1>
+                <div id="game-stats">
+                    <p>You survived <span id="days-survived">0</span> days!</p>
+                    <p>Zombies killed: <span id="zombies-killed">0</span></p>
+                    <p>Final score: <span id="final-score">0</span></p>
+                </div>
+                <button id="restart-button">Try Again</button>
+                <button id="menu-button">Main Menu</button>
+            </div>
+        </div>
+        
+        <!-- Pause Menu -->
+        <div id="pause-menu" class="modal hidden">
+            <div class="modal-content">
+                <h1>Game Paused</h1>
+                <button id="resume-button">Resume</button>
+                <button id="save-button">Save Game</button>
+                <button id="quit-button">Quit to Menu</button>
+            </div>
         </div>
     </div>
+    
+    <audio id="gunshot-sound" src="sounds/gunshot.mp3" preload="auto"></audio>
+    <audio id="zombie-sound" src="sounds/zombie_groan.mp3" preload="auto"></audio>
+    <audio id="pickup-sound" src="sounds/pickup.mp3" preload="auto"></audio>
+    
     <script src="game.js"></script>
 </body>
 </html>
